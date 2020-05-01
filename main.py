@@ -26,6 +26,9 @@ def play():
 	
 	while continuing:
 		make_move(current_player)
+		
+		flip_player()
+		
 
 def make_move(player):
 	print(player + "'s turn")
@@ -51,5 +54,16 @@ def make_move(player):
 	
 	#Display the board with the newly marked cell
 	display_board()
+
 	
+def flip_player():
+	#We need to use the global variable current_player
+	global current_player
+	
+	if current_player == "X":
+		current_player = "O"
+	else:
+		current_player = "X"
+
+
 play()
