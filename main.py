@@ -27,8 +27,18 @@ def play():
 	while continuing:
 		make_move(current_player)
 		
-		flip_player()
+		check_win()
 		
+		check_tie()
+		
+		flip_player()
+	
+	if win == "X":
+		print("Player X has won!")
+	elif win == "O":
+		print("Player O has won!")
+	else:
+		print("Tie Game!")
 
 def make_move(player):
 	print(player + "'s turn")
@@ -64,6 +74,22 @@ def flip_player():
 		current_player = "O"
 	else:
 		current_player = "X"
+		
+	
+def check_win():
+	global continuing
 
+
+def check_tie():
+	#Make use of global variable continuing
+	global continuing
+	
+	#If there are no more "-" spaces, and neither player has won, the game is tied
+	if "-" not in board:
+		continuing = False
+		return True
+	else:
+		return False
+	
 
 play()
