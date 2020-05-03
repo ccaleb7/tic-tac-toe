@@ -17,17 +17,21 @@ continuing = True
 #Keeps track of wins for both players
 xWins = 0
 oWins = 0
+ties = 0
 
 def display_board():
+    #Display the board with lines separating them
     print("\n")
-    print(board[0] + " | " + board[1] + " | " + board[2])
-    print(board[3] + " | " + board[4] + " | " + board[5])
-    print(board[6] + " | " + board[7] + " | " + board[8])
+    print(board[0] + " | " + board[1] + " | " + board[2] + "      0 | 1 | 2")
+    print(board[3] + " | " + board[4] + " | " + board[5] + "      3 | 4 | 5")
+    print(board[6] + " | " + board[7] + " | " + board[8] + "      6 | 7 | 8")
     print("\n")
 
 def play():
+    #Need to use global varibles for xWins and oWins
     global xWins
     global oWins
+    global ties
     
     #Reset the board
     reset_game()
@@ -58,9 +62,12 @@ def play():
         oWins = oWins + 1
     else:
         print("Tie Game!")
+        ties = ties + 1
 
 def make_move(player):
+    #Display the current player's turn
     print(player + "'s turn")
+    
     #Ask the player to input a cell to choose from
     pos = input("Pick a position from 0 - 8: ")
     
@@ -88,7 +95,8 @@ def make_move(player):
 def flip_player():
     #We need to use the global variable current_player
     global current_player
-    
+
+    #Flip the player based on the current player
     if current_player == "X":
         current_player = "O"
     else:
@@ -96,6 +104,7 @@ def flip_player():
         
     
 def check_win():
+    #Need to use global variables continuing and win
     global continuing
     global win
     
@@ -164,23 +173,30 @@ def play_again():
     return input().lower().startswith('y')
 
 def reset_game():
+    #Make use of global variables to be reset
     global board
     global win
     global continuing
     global current_player
+
+    #Set the values back to the original values
     board = ["-", "-","-",
          "-", "-","-",
          "-", "-","-",]
     win = None
     continuing = True
     current_player = "X"
-    
+
+#Call play() to start the game    
 play()
 
+#While the user wants to continue playing continue to play
 while play_again():
     play()
 
+#At the end of the game, each player's score is displayed
 print("\n")
 print("Player X won " + str(xWins) + " times")
 print("Player O won " + str(oWins) + " times")
+print("Players tied " + str(ties) + " times")
 print("Thanks for playing! :)")    
