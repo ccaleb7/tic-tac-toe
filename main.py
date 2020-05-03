@@ -22,6 +22,9 @@ def display_board():
     print("\n")
 
 def play():
+    #Reset the board
+    reset_game()
+    
     #Display the board
     display_board()
     
@@ -145,6 +148,27 @@ def check_tie():
         return True
     else:
         return False
-    
 
+def play_again():
+    #Ask if the players want to play again
+    print("Do you want to play again? (yes or no)")
+    return input().lower().startswith('y')
+
+def reset_game():
+    global board
+    global win
+    global continuing
+    global current_player
+    board = ["-", "-","-",
+         "-", "-","-",
+         "-", "-","-",]
+    win = None
+    continuing = True
+    current_player = "X"
+    
 play()
+
+while play_again():
+    play()
+
+print("Thanks for playing! :)")    
