@@ -14,6 +14,10 @@ win = None
 #Keeps track of if the game is over
 continuing = True
 
+#Keeps track of wins for both players
+xWins = 0
+oWins = 0
+
 def display_board():
     print("\n")
     print(board[0] + " | " + board[1] + " | " + board[2])
@@ -22,6 +26,9 @@ def display_board():
     print("\n")
 
 def play():
+    global xWins
+    global oWins
+    
     #Reset the board
     reset_game()
     
@@ -45,8 +52,10 @@ def play():
     #After leaving the while loop, there should be a winner or a tie game
     if win == "X":
         print("Player X has won!")
+        xWins = xWins + 1
     elif win == "O":
         print("Player O has won!")
+        oWins = oWins + 1
     else:
         print("Tie Game!")
 
@@ -171,4 +180,7 @@ play()
 while play_again():
     play()
 
+print("\n")
+print("Player X won " + str(xWins) + " times")
+print("Player O won " + str(oWins) + " times")
 print("Thanks for playing! :)")    
