@@ -105,6 +105,21 @@ def check_win():
         win = None
     
     #Check if there is a winner in columns
+    col1 = board[0] == board[3] == board[6] != "-"
+    col2 = board[1] == board[4] == board[7] != "-"
+    col3 = board[2] == board[5] == board[8] != "-"
+
+    if col1:
+            continuing = False
+            win = board[0]
+    elif col2:
+            continuing = False
+            win = board[1]
+    elif col3:
+            continuing = False
+            win = board[2]
+    else:
+        win = None
     
     #Check if there is a winner in diagonal
 
