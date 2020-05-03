@@ -122,7 +122,18 @@ def check_win():
         win = None
     
     #Check if there is a winner in diagonal
+    diag1 = board[0] == board[4] == board[8] != "-"
+    diag2 = board[2] == board[4] == board[6] != "-"
 
+    if diag1:
+            continuing = False
+            win = board[0]
+    elif diag2:
+            continuing = False
+            win = board[2]
+    else:
+        win = None
+            
 
 def check_tie():
     #Make use of global variable continuing
